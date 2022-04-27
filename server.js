@@ -6,11 +6,19 @@ const app = express()
 app.use(cors())
 
 app.get("/",(req,res)=>{
-    res.sendFile(__dirname+"/index.html")
+    res.status(404)
+    res.end()
 })
 app.get("/download",(req,res)=>{
     var url = req.query.url
     var type = req.query.type
+    var name="video"
+    if(type=="mp4"){
+        name="video"
+    }
+    if(type=="mp3"){
+        name="audio"
+    }
     if(type == undefined||!type){
         type="mp4"
     }
