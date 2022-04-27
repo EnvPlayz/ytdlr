@@ -23,10 +23,10 @@ app.get("/download",(req,res)=>{
         type="mp4"
     }
     if(url == undefined||!url){
-        res.send("Err")
+        res.redirect("https://ytdlr.ml/?alt=err")
         return
     }
-    res.header("Content-Disposition",`attachment; filename="video.${type}"`)
+    res.header("Content-Disposition",`attachment; filename="${name}.${type}"`)
     ytdl(url,{
         format: type
     }).pipe(res)
